@@ -1,6 +1,6 @@
 class CfgPatches
 {
-	class bc_briefingkit
+	class bc_ace_overwrite
 	{
 		units[]={};
 		weapons[]={};
@@ -13,7 +13,7 @@ class CfgPatches
 };
 class Extended_PreInit_EventHandlers
 {
-	class bc_briefingkit
+	class bc_ace_overwrite
 	{
 		clientinit="call compile preprocessFileLineNumbers '\z\bc\addons\ace_overwrite\xeh_preInit.sqf'";
 	};
