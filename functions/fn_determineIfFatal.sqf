@@ -35,7 +35,7 @@ if (EGVAR(medical,fatalDamageSource) in [0, 2]) then {
 };
 if (EGVAR(medical,fatalDamageSource) in [1, 2]) then {
     // Sum of trauma to critical areas can be fatal (e.g. many small hits)
-    private _damageThreshold = if (isPlayer _unit) then { EGVAR(medical,playerDamageThreshold) } else { EGVAR(medical,AIDamageThreshold) };
+    private _damageThreshold = GET_DAMAGE_THRESHOLD(_unit);
     private _headThreshhold = ace_medical_const_headResistance * _damageThreshold;
     private _bodyThreshhold = ace_medical_const_bodyResistance * _damageThreshold;
     private _armsThreshhold = ace_medical_const_armsResistance * _damageThreshold;
