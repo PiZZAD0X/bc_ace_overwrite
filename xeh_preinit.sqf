@@ -14,14 +14,3 @@ ace_medical_const_headVitalMutiplier = 1;
 ace_medical_const_bodyVitalMutiplier = 1;
 ace_medical_const_armsVitalMutiplier = .02;
 ace_medical_const_legsVitalMutiplier = .02;
-
-/*
-wip
-//armor multipler
-// .5 armor 50% less effective
-// 2 armor 100% more effective
-ace_medical_const_armorMulti = 1;
-
-//Max an armour vaule can be
-ace_medical_const_maxArmor = 999;
-*/
