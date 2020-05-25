@@ -22,12 +22,12 @@ params ["_unit", "_part", "_bodyPartDamage", "_woundDamage"];
 scopeName "main";
 if (EGVAR(medical,fatalDamageSource) in [0, 2]) then {
     // Emulate damage to vital organs - Original rewrite logic, only powerfull headshots or random torso shots
-    if (_part == 0 && {_woundDamage >= ace_medical_const_headDamageThreshold}) exitWith {
+    if (_part == 0 && {_woundDamage >= HEAD_DAMAGE_THRESHOLD}) exitWith {
         // Fatal damage to the head is guaranteed death
         TRACE_1("determineIfFatal: lethal headshot",_woundDamage);
         true breakOut "main";
     };
-    if (_part == 1 && {_woundDamage >= ace_medical_const_organDamageThreshold} && {random 1 < ACE_MEDICAL_const_heartHitChance}) exitWith {
+    if (_part == 1 && {_woundDamage >= ORGAN_DAMAGE_THRESHOLD} && {random 1 < HEART_HIT_CHANCE}) exitWith {
         // Fatal damage to torso has various results based on organ hit - Heart shot is lethal
         TRACE_1("determineIfFatal: lethal heartshot",_woundDamage);
         true breakOut "main";
@@ -49,7 +49,7 @@ if (EGVAR(medical,fatalDamageSource) in [1, 2]) then {
     _sumOfDamage = _sumOfDamage + (((_lArmDamage + _rArmDamage) - _armsThreshhold) max 0) * ace_medical_const_armsVitalMutiplier;
     _sumOfDamage = _sumOfDamage + (((_lLegDamage + _rLegDamage) - _legsThreshhold) max 0) * ace_medical_const_legsVitalMutiplier;
 
-    private _chanceFatal = 1 - exp -((_sumOfDamage/ace_medical_const_fatalSumDamageWeibull_L)^ace_medical_const_fatalSumDamageWeibull_K);
+    private _chanceFatal = 1 - exp -((_vitalDamage/FATAL_SUM_DAMAGE_WEIBULL_L)^FATAL_SUM_DAMAGE_WEIBULL_K);
     if(_unit getVariable ["ace_isunconscious", false])then{_chanceFatal = (_chanceFatal * 2) max .3};
     if (_chanceFatal > random 1) exitWith {
         true breakOut "main";
